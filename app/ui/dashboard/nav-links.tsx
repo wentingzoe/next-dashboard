@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+// Use to check the path and implement this pattern.
 import clsx from 'clsx';
 
 // Map of links to display in the side navigation.
