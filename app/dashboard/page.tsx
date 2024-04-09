@@ -10,16 +10,17 @@ import {
 
 export default async function Page() {
   //Page is an async component. This allows you to use await to fetch data.
+  //waterfall refers to the process of waiting for one async function to finish before starting the next one.
   const revenue = await fetchRevenue();
   const latestInvoices = await fetchLatestInvoices();
+  // wait for fetchRevenue() to finish
   const {
     numberOfInvoices,
     numberOfCustomers,
     totalPaidInvoices,
     totalPendingInvoices,
   } = await fetchCardData();
-  //The data requests are unintentionally blocking each other, creating a request waterfall.
-  //By default, Next.js prerenders routes to improve performance, this is called Static Rendering. So if your data changes, it won't be reflected in your dashboard.
+  // wait for fetchLatestInvoices() to finish
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
