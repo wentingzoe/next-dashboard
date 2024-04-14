@@ -4,6 +4,8 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 //<Search> is a Client Component, so you used the useSearchParams() hook to access the params from the client.
+import { useDebouncedCallback } from 'use-debounce';
+//`useDebouncedCallback` is a hook that debounces a callback function. Debouncing prevents a new database query on every keystroke.
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   //`useSearchParams` is a hook that returns the current URL query parameters.
@@ -12,7 +14,8 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const { replace } = useRouter();
   //`useRouter` is a hook that returns the router object, which contains methods for navigating between pages.
   //`replace` is a method of ussRouter that updates the URL without adding a new entry to the browser history.
-  function handleSearch(term: string) {
+  const handleSearch = useDebouncedCallback((term: string) => {
+    console.log(`Searching... ${term}`);
     const params = new URLSearchParams(searchParams);
     // `URLSearchParams` is a Web API that provides utility methods for manipulating the URL query parameters
     if (term) {
@@ -25,7 +28,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     //As the user types into the search bar, params.toString() translates this input into a URL-friendly format.
     //replace(${pathname}?${params.toString()}) updates the URL with the user's search data. For example, /dashboard/invoices?query=lee if the user searches for "Lee".
     //
-  }
+  }, 300);
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">
