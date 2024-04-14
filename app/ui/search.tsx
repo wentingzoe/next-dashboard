@@ -15,9 +15,10 @@ export default function Search({ placeholder }: { placeholder: string }) {
   //`useRouter` is a hook that returns the router object, which contains methods for navigating between pages.
   //`replace` is a method of ussRouter that updates the URL without adding a new entry to the browser history.
   const handleSearch = useDebouncedCallback((term: string) => {
-    console.log(`Searching... ${term}`);
     const params = new URLSearchParams(searchParams);
     // `URLSearchParams` is a Web API that provides utility methods for manipulating the URL query parameters
+    params.set('page', '1');
+    //when the user types a new search query, you want to reset the page number to 1.
     if (term) {
       params.set('search', term);
     } else {
