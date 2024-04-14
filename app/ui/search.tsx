@@ -3,7 +3,7 @@
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-
+//<Search> is a Client Component, so you used the useSearchParams() hook to access the params from the client.
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   //`useSearchParams` is a hook that returns the current URL query parameters.
