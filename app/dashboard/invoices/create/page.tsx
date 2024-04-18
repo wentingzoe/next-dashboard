@@ -7,6 +7,8 @@ export default async function Page() {
 
   return (
     <main>
+      {/* Breadcrumbs component is used to provide a navigation trail for users to follow back to higher-level sections of the application.*/}
+      {/* Clickable titles to go back */}
       <Breadcrumbs
         breadcrumbs={[
           { label: 'Invoices', href: '/dashboard/invoices' },
@@ -17,6 +19,7 @@ export default async function Page() {
           },
         ]}
       />
+
       <Form customers={customers} />
     </main>
   );
