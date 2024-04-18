@@ -25,6 +25,7 @@ export default function Breadcrumbs({
             )}
           >
             <Link href={breadcrumb.href}>{breadcrumb.label}</Link>
+            {/* Using a ternary operator to conditionally render a separator ("/") between breadcrumb items */}
             {index < breadcrumbs.length - 1 ? (
               <span className="mx-3 inline-block">/</span>
             ) : null}
