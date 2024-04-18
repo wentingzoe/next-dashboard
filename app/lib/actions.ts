@@ -3,6 +3,8 @@
 
 import {z} from 'zod';
 //`zod` is a TypeScript-first schema declaration and validation library.
+import { sql } from '@vercel/postgres';
+
 const FormSchema = z.object({
   id: z.string(),
   customerId: z.string(),
@@ -23,4 +25,9 @@ export async function createInvoice(formData: FormData) {
   // Test it out:
   console.log(customerId, amount, status,amountInCents,date);
 	console.log(typeof amount);
+	 
+	await sql`
+    INSERT INTO invoices (customer_id, amount, status, date)
+    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+  `;
 }
