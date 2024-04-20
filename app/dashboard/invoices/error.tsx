@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 export default function Error({
   error,
   reset,
+  //'error' is an instance of JavaScript's native Error object
+  //'reset' is a function that will be called when the user clicks the "Try again" button
 }: {
   error: Error & { digest?: string };
   reset: () => void;
