@@ -1,6 +1,7 @@
 import Form from '@/app/ui/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
+import { notFound } from 'next/navigation';
 //Import a new function called fetchInvoiceById and pass the id as an argument.
 //Import fetchCustomers to fetch the customer names for the dropdown.
 export default async function Page({ params }: { params: { id: string } }) {
@@ -11,6 +12,9 @@ export default async function Page({ params }: { params: { id: string } }) {
     fetchCustomers(),
   ]);
   // Promise.all(): This function takes an array of promises and returns a single promise that resolves when all of the promises in the array have resolved.
+  if (!invoice) {
+    notFound();
+  }
   return (
     <main>
       <Breadcrumbs
