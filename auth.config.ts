@@ -4,7 +4,7 @@ export const authConfig = {
   pages: {
     signIn: '/login',
   },
-// Protect dashboard route:
+  /* Protect dashboard route: */
 	 callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user; 
@@ -21,6 +21,7 @@ export const authConfig = {
       return true;
     },
   },
+  /* Array for different login options  */
   providers: [], 
-  // Add providers with an empty array for now
+
 } satisfies NextAuthConfig;
